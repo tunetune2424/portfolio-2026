@@ -10,30 +10,64 @@
   </style>
 </head>
 <body>
-  <!-- ========== HEADER ========== -->
-  <header class="bg-white shadow">
-    <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <!-- ロゴ -->
-      <div class="flex items-center gap-2">
-        <div class="w-4 h-4 bg-red-500 rounded"></div>
-        <div class="w-4 h-4 bg-teal-500 rounded"></div>
-        <div class="w-4 h-4 bg-yellow-400 rounded"></div>
-        <span class="ml-2 font-semibold text-gray-800">Your Portfolio</span>
-      </div>
-      
-      <!-- ナビメニュー -->
-      <nav class="flex gap-8">
-        <a href="#about" class="text-gray-600 hover:text-gray-900">About</a>
-        <a href="#works" class="text-gray-600 hover:text-gray-900">Works</a>
-        <a href="#skills" class="text-gray-600 hover:text-gray-900">Skills</a>
-        <a href="#contact" class="text-gray-600 hover:text-gray-900">Contact</a>
+  <div id="app">
+    <!-- ヘッダー -->
+    <header class="fixed top-0 w-full bg-white shadow-sm z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <!-- ロゴ -->
+          <div class="flex items-center space-x-2">
+            <div class="flex space-x-1">
+              <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+              <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+              <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            </div>
+            <span class="text-xl font-bold text-gray-800">Your Portfolio</span>
+          </div>
+          
+          <!-- ナビゲーション -->
+          <ul class="hidden md:flex space-x-8">
+            <li><a href="#about" class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">About</a></li>
+            <li><a href="#works" class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">Works</a></li>
+            <li><a href="#skills" class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">Skills</a></li>
+            <li><a href="#contact" class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">Contact</a></li>
+          </ul>
+
+          <!-- モバイルメニューボタン（後で実装） -->
+          <button class="md:hidden text-gray-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
       </nav>
-    </nav>
+    </header>
+
   </header>
 
-  <!-- テスト用（後で削除） -->
-  <!-- <h1 class="text-3xl font-bold text-teal-500">Tailwind Works!</h1> -->
+  <!-- ヒーローセクション -->
+  <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 pt-20">
+    <div class="text-center text-white px-6">
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+        Welcome to My Portfolio
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 text-gray-100">
+        Full Stack Web Developer
+      </p>
+      <p class="text-lg mb-12 text-gray-200 max-w-2xl mx-auto">
+        React / Node.js / MongoDB を使って、美しく機能的なWebサイトを作ります
+      </p>
+      <button class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-lg">
+        View My Work ↓
+      </button>
+    </div>
+  </section>
 
+</div>
+
+
+  </div>
+  
   <script type="module" src="/main.js"></script>
 </body>
 </html>
