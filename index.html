@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Portfolio</title>
-  
+
   <style>
     @import "tailwindcss";
   </style>
 </head>
+
 <body>
   <div id="app">
     <!-- ヘッダー -->
@@ -24,13 +26,17 @@
             </div>
             <span class="text-xl font-bold text-gray-800">Your Portfolio</span>
           </div>
-          
+
           <!-- ナビゲーション -->
           <ul class="hidden md:flex space-x-8">
-            <li><a href="#about" class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">About</a></li>
-            <li><a href="#works" class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">Works</a></li>
-            <li><a href="#skills" class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">Skills</a></li>
-            <li><a href="#contact" class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">Contact</a></li>
+            <li><a href="#about"
+                class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">About</a></li>
+            <li><a href="#works"
+                class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">Works</a></li>
+            <li><a href="#skills"
+                class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">Skills</a></li>
+            <li><a href="#contact"
+                class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">Contact</a></li>
           </ul>
 
           <!-- モバイルメニューボタン（後で実装） -->
@@ -43,31 +49,166 @@
       </nav>
     </header>
 
-  </header>
 
-  <!-- ヒーローセクション -->
-  <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 pt-20">
-    <div class="text-center text-white px-6">
-      <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-        Welcome to My Portfolio
-      </h1>
-      <p class="text-xl md:text-2xl mb-8 text-gray-100">
-        Full Stack Web Developer
-      </p>
-      <p class="text-lg mb-12 text-gray-200 max-w-2xl mx-auto">
-        React / Node.js / MongoDB を使って、美しく機能的なWebサイトを作ります
-      </p>
-      <button class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-lg">
-        View My Work ↓
-      </button>
-    </div>
-  </section>
 
-</div>
+    <!-- ヒーローセクション -->
+    <section
+      class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 pt-20">
+      <div class="text-center text-white px-6">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+          Welcome to My Portfolio
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-gray-100">
+          Full Stack Web Developer
+        </p>
+        <p class="text-lg mb-12 text-gray-200 max-w-2xl mx-auto">
+          React / Node.js / MongoDB を使って、美しく機能的なWebサイトを作ります
+        </p>
+        <button
+          class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-lg">
+          View My Work ↓
+        </button>
+      </div>
+    </section>
 
+    <!-- スキルセクション -->
+    <section id="skills" class="py-16 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Skills</h2>
+
+        <!-- スキルカード グリッド -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- スキルカード 1 -->
+          <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-xl hover:scale-105 transition-all duration-300">
+            <div class="text-4xl mb-4">🎨</div>
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Frontend</h3>
+            <p class="text-gray-600">
+              HTML / CSS / JavaScript / React / Tailwind CSS
+            </p>
+          </div>
+
+          <!-- スキルカード 2 -->
+          <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-xl hover:scale-105 transition-all duration-300">
+            <div class="text-4xl mb-4">⚙️</div>
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Backend</h3>
+            <p class="text-gray-600">
+              Node.js / Express / REST API / MongoDB
+            </p>
+          </div>
+
+          <!-- スキルカード 3 -->
+          <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-xl hover:scale-105 transition-all duration-300">
+            <div class="text-4xl mb-4">🛠️</div>
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Tools</h3>
+            <p class="text-gray-600">
+              Git / GitHub / VS Code / Vercel / Render
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 制作物セクション -->
+    <section id="works" class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Works</h2>
+
+        <!-- プロジェクトカード グリッド -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- プロジェクトカード 1 -->
+          <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+            <div class="h-48 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
+              <div class="text-white text-6xl">🍊</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800">Mikan Farm HP</h3>
+              <p class="text-gray-600 mb-4">
+                みかん農家の商品紹介サイト。React + Tailwind CSS で制作。
+              </p>
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">詳細 →</a>
+            </div>
+          </div>
+
+          <!-- プロジェクトカード 2 -->
+          <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+            <div class="h-48 bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center">
+              <div class="text-white text-6xl">☕</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800">Cafe Reservation HP</h3>
+              <p class="text-gray-600 mb-4">
+                カフェの予約サイト。React + Express + MongoDB で実装。
+              </p>
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">詳細 →</a>
+            </div>
+          </div>
+
+          <!-- プロジェクトカード 3 -->
+          <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+            <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+              <div class="text-white text-6xl">🛒</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800">EC Site with Stripe</h3>
+              <p class="text-gray-600 mb-4">
+                Stripe 決済機能付き EC サイト。フルスタック開発。
+              </p>
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">詳細 →</a>
+            </div>
+          </div>
+
+          <!-- プロジェクトカード 4 -->
+          <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+            <div class="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+              <div class="text-white text-6xl">💼</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-gray-800">Portfolio Website</h3>
+              <p class="text-gray-600 mb-4">
+                自分自身のポートフォリオサイト。React + Tailwind CSS。
+              </p>
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">詳細 →</a>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-12">
+      <div class="max-w-4xl mx-auto px-4">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold mb-2">Contact</h3>
+          <p class="text-gray-400 mb-6">質問やお問い合わせはお気軽にどうぞ</p>
+          <!-- SNS リンク -->
+          <div class="flex justify-center space-x-6 mb-8">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <span class="text-2xl">🐙</span> GitHub
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <span class="text-2xl">💼</span> LinkedIn
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <span class="text-2xl">✉️</span> Email
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- フッター内容 -->
+      <div class="text-center text-gray-400">
+        <p>&copy; 2026 Your Portfolio. All rights reserved.</p>
+        <p class="text-sm mt-2">Made with ❤️ by Full Stack Developer</p>
+      </div>
+    </footer>
 
   </div>
-  
+
+
+
+
   <script type="module" src="/main.js"></script>
 </body>
+
 </html>
