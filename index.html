@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Portfolio</title>
-
+  
   <style>
     @import "tailwindcss";
+    
+    /* ハンバーガーメニュー用のアニメーション */
+    .menu-open {
+      display: block !important;
+    }
   </style>
 </head>
-
 <body>
   <div id="app">
     <!-- ヘッダー -->
@@ -26,34 +29,35 @@
             </div>
             <span class="text-xl font-bold text-gray-800">Your Portfolio</span>
           </div>
-
-          <!-- ナビゲーション -->
+          
+          <!-- PC用ナビゲーション -->
           <ul class="hidden md:flex space-x-8">
-            <li><a href="#about"
-                class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">About</a></li>
-            <li><a href="#works"
-                class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">Works</a></li>
-            <li><a href="#skills"
-                class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">Skills</a></li>
-            <li><a href="#contact"
-                class="text-gray-600 hover:text-blue-600 transition-all duration-200 hover-scale:-110">Contact</a></li>
+            <li><a href="#about" class="text-gray-600 hover:text-blue-600 transition-all duration-200">About</a></li>
+            <li><a href="#works" class="text-gray-600 hover:text-blue-600 transition-all duration-200">Works</a></li>
+            <li><a href="#skills" class="text-gray-600 hover:text-blue-600 transition-all duration-200">Skills</a></li>
+            <li><a href="#contact" class="text-gray-600 hover:text-blue-600 transition-all duration-200">Contact</a></li>
           </ul>
 
-          <!-- モバイルメニューボタン（後で実装） -->
-          <button class="md:hidden text-gray-600">
+          <!-- モバイル用メニューボタン -->
+          <button id="hamburger" class="md:hidden text-gray-600 focus:outline-none">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
         </div>
+
+        <!-- モバイル用メニュー -->
+        <ul id="mobile-menu" class="hidden md:hidden flex flex-col space-y-4 mt-4 pb-4">
+          <li><a href="#about" class="text-gray-600 hover:text-blue-600 transition-all duration-200 block">About</a></li>
+          <li><a href="#works" class="text-gray-600 hover:text-blue-600 transition-all duration-200 block">Works</a></li>
+          <li><a href="#skills" class="text-gray-600 hover:text-blue-600 transition-all duration-200 block">Skills</a></li>
+          <li><a href="#contact" class="text-gray-600 hover:text-blue-600 transition-all duration-200 block">Contact</a></li>
+        </ul>
       </nav>
     </header>
 
-
-
     <!-- ヒーローセクション -->
-    <section
-      class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 pt-20">
+    <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 pt-20">
       <div class="text-center text-white px-6">
         <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
           Welcome to My Portfolio
@@ -64,151 +68,177 @@
         <p class="text-lg mb-12 text-gray-200 max-w-2xl mx-auto">
           React / Node.js / MongoDB を使って、美しく機能的なWebサイトを作ります
         </p>
-        <button
-          class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-lg">
+        <button class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-lg">
           View My Work ↓
         </button>
       </div>
     </section>
 
-    <!-- スキルセクション -->
-    <section id="skills" class="py-16 bg-gray-50">
-      <div class="max-w-4xl mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Skills</h2>
-
-        <!-- スキルカード グリッド -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- スキルカード 1 -->
-          <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-xl hover:scale-105 transition-all duration-300">
-            <div class="text-4xl mb-4">🎨</div>
-            <h3 class="text-xl font-bold mb-3 text-gray-800">Frontend</h3>
-            <p class="text-gray-600">
-              HTML / CSS / JavaScript / React / Tailwind CSS
-            </p>
-          </div>
-
-          <!-- スキルカード 2 -->
-          <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-xl hover:scale-105 transition-all duration-300">
-            <div class="text-4xl mb-4">⚙️</div>
-            <h3 class="text-xl font-bold mb-3 text-gray-800">Backend</h3>
-            <p class="text-gray-600">
-              Node.js / Express / REST API / MongoDB
-            </p>
-          </div>
-
-          <!-- スキルカード 3 -->
-          <div class="bg-white rounded-lg shadow-md p-8 hover:shadow-xl hover:scale-105 transition-all duration-300">
-            <div class="text-4xl mb-4">🛠️</div>
-            <h3 class="text-xl font-bold mb-3 text-gray-800">Tools</h3>
-            <p class="text-gray-600">
-              Git / GitHub / VS Code / Vercel / Render
-            </p>
-          </div>
+    <!-- About セクション -->
+    <section id="about" class="py-20 px-6 bg-white">
+      <div class="container mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">About me</h2>
+        <div class="max-w-2xl mx-auto text-center">
+          <p class="text-lg text-gray-600 mb-6">
+            Web開発初心者から、3ヶ月で実案件レベルのスキルを習得中です。
+          </p>
+          <p class="text-lg text-gray-600">
+            React・Node.js・MongoDBを使ったフルスタック開発に取り組んでいます。
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- 制作物セクション -->
-    <section id="works" class="py-20 bg-white">
-      <div class="max-w-4xl mx-auto px-4">
+    <!-- Works セクション（既存） -->
+    <section id="works" class="py-20 px-6 bg-gray-50">
+      <div class="container mx-auto">
         <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Works</h2>
-
-        <!-- プロジェクトカード グリッド -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- プロジェクトカード 1 -->
-          <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-            <div class="h-48 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
-              <div class="text-white text-6xl">🍊</div>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          
+          <!-- プロジェクト 1 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600"></div>
             <div class="p-6">
-              <h3 class="text-xl font-bold mb-2 text-gray-800">Mikan Farm HP</h3>
-              <p class="text-gray-600 mb-4">
-                みかん農家の商品紹介サイト。React + Tailwind CSS で制作。
-              </p>
-              <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">詳細 →</a>
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Portfolio Website</h3>
+              <p class="text-gray-600 text-sm mb-4">React + Tailwind CSS + Vercel</p>
+              <p class="text-gray-600">シンプルで美しいポートフォリオサイト</p>
             </div>
           </div>
 
-          <!-- プロジェクトカード 2 -->
-          <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-            <div class="h-48 bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center">
-              <div class="text-white text-6xl">☕</div>
-            </div>
+          <!-- プロジェクト 2 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="h-48 bg-gradient-to-br from-green-400 to-green-600"></div>
             <div class="p-6">
-              <h3 class="text-xl font-bold mb-2 text-gray-800">Cafe Reservation HP</h3>
-              <p class="text-gray-600 mb-4">
-                カフェの予約サイト。React + Express + MongoDB で実装。
-              </p>
-              <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">詳細 →</a>
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Mikan Farm Website</h3>
+              <p class="text-gray-600 text-sm mb-4">React + Tailwind CSS + Vercel</p>
+              <p class="text-gray-600">農園の魅力を伝えるWebサイト</p>
             </div>
           </div>
 
-          <!-- プロジェクトカード 3 -->
-          <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-            <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
-              <div class="text-white text-6xl">🛒</div>
-            </div>
+          <!-- プロジェクト 3 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="h-48 bg-gradient-to-br from-yellow-400 to-yellow-600"></div>
             <div class="p-6">
-              <h3 class="text-xl font-bold mb-2 text-gray-800">EC Site with Stripe</h3>
-              <p class="text-gray-600 mb-4">
-                Stripe 決済機能付き EC サイト。フルスタック開発。
-              </p>
-              <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">詳細 →</a>
+              <h3 class="text-xl font-bold text-gray-800 mb-2">Cafe Reservation System</h3>
+              <p class="text-gray-600 text-sm mb-4">React + Express + MongoDB + Render</p>
+              <p class="text-gray-600">予約機能付きカフェサイト</p>
             </div>
           </div>
 
-          <!-- プロジェクトカード 4 -->
-          <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
-            <div class="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-              <div class="text-white text-6xl">💼</div>
-            </div>
+          <!-- プロジェクト 4 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+            <div class="h-48 bg-gradient-to-br from-pink-400 to-pink-600"></div>
             <div class="p-6">
-              <h3 class="text-xl font-bold mb-2 text-gray-800">Portfolio Website</h3>
-              <p class="text-gray-600 mb-4">
-                自分自身のポートフォリオサイト。React + Tailwind CSS。
-              </p>
-              <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">詳細 →</a>
+              <h3 class="text-xl font-bold text-gray-800 mb-2">E-Commerce Site</h3>
+              <p class="text-gray-600 text-sm mb-4">React + Express + Stripe + MongoDB</p>
+              <p class="text-gray-600">Stripe決済対応のECサイト</p>
             </div>
           </div>
-
-
         </div>
       </div>
     </section>
 
-    <!-- フッター -->
-    <footer class="bg-gray-800 text-white py-12">
-      <div class="max-w-4xl mx-auto px-4">
-        <div class="text-center mb-6">
-          <h3 class="text-2xl font-bold mb-2">Contact</h3>
-          <p class="text-gray-400 mb-6">質問やお問い合わせはお気軽にどうぞ</p>
-          <!-- SNS リンク -->
-          <div class="flex justify-center space-x-6 mb-8">
-            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-              <span class="text-2xl">🐙</span> GitHub
-            </a>
-            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-              <span class="text-2xl">💼</span> LinkedIn
-            </a>
-            <a href="#" class="text-gray-400 hover:text-white transition-colors">
-              <span class="text-2xl">✉️</span> Email
-            </a>
+    <!-- Skills セクション -->
+    <section id="skills" class="py-20 px-6 bg-white">
+      <div class="container mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          
+          <!-- Frontend -->
+          <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Frontend</h3>
+            <ul class="space-y-3 text-gray-600">
+              <li>✓ HTML / CSS</li>
+              <li>✓ JavaScript</li>
+              <li>✓ React</li>
+              <li>✓ Tailwind CSS</li>
+              <li>✓ Responsive Design</li>
+            </ul>
+          </div>
+
+          <!-- Backend -->
+          <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Backend</h3>
+            <ul class="space-y-3 text-gray-600">
+              <li>✓ Node.js</li>
+              <li>✓ Express</li>
+              <li>✓ REST API</li>
+              <li>✓ Authentication</li>
+              <li>✓ Server Deployment</li>
+            </ul>
+          </div>
+
+          <!-- Database & Tools -->
+          <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6">Database & Tools</h3>
+            <ul class="space-y-3 text-gray-600">
+              <li>✓ MongoDB</li>
+              <li>✓ Git / GitHub</li>
+              <li>✓ Vercel & Render</li>
+              <li>✓ Postman</li>
+              <li>✓ npm & Packages</li>
+            </ul>
           </div>
         </div>
       </div>
-      <!-- フッター内容 -->
-      <div class="text-center text-gray-400">
-        <p>&copy; 2026 Your Portfolio. All rights reserved.</p>
-        <p class="text-sm mt-2">Made with ❤️ by Full Stack Developer</p>
+    </section>
+
+    <!-- Contact セクション -->
+    <section id="contact" class="py-20 px-6 bg-gray-50">
+      <div class="container mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Contact me</h2>
+        <div class="max-w-2xl mx-auto">
+          <p class="text-center text-gray-600 mb-8">
+            お仕事のご相談やお問い合わせは、下記フォームからお気軽にどうぞ。
+          </p>
+          <form class="space-y-6">
+            <div>
+              <label class="block text-gray-700 font-semibold mb-2">Name</label>
+              <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Your Name">
+            </div>
+            <div>
+              <label class="block text-gray-700 font-semibold mb-2">Email</label>
+              <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Your Email">
+            </div>
+            <div>
+              <label class="block text-gray-700 font-semibold mb-2">Message</label>
+              <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 h-32" placeholder="Your Message"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-all duration-200">
+              SEND
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 px-6">
+      <div class="container mx-auto text-center">
+        <p class="text-gray-400">© 2024 Your Portfolio. All rights reserved.</p>
       </div>
     </footer>
 
   </div>
+  
+  <script>
+    // ハンバーガーメニューの機能
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
 
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
 
-
+    // モバイルメニューのリンクをクリックしたらメニューを閉じる
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
 
   <script type="module" src="/main.js"></script>
 </body>
-
 </html>
