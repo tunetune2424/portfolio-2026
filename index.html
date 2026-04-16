@@ -191,20 +191,23 @@
           <p class="text-center text-gray-600 mb-8">
             お仕事のご相談やお問い合わせは、下記フォームからお気軽にどうぞ。
           </p>
-          <form class="space-y-6">
+          <form id="contactForm" class="space-y-6">
             <div>
               <label class="block text-gray-700 font-semibold mb-2">Name</label>
-              <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Your Name">
+              <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Your Name" required>
             </div>
             <div>
               <label class="block text-gray-700 font-semibold mb-2">Email</label>
-              <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Your Email">
+              <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Your Email" required>
             </div>
             <div>
               <label class="block text-gray-700 font-semibold mb-2">Message</label>
-              <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 h-32" placeholder="Your Message"></textarea>
+              <textarea id="message" name="message" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 h-32" placeholder="Your Message" required></textarea>
             </div>
-            <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-all duration-200">
+            <!-- メッセージ表示エリア（送信結果） -->
+             <div id="statusMessage" class="hidden p-4 rounded-lg text-center font-semibold"></div>
+
+            <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-all duration-200">
               SEND
             </button>
           </form>
@@ -221,7 +224,73 @@
 
   </div>
   
+
+  
+  <!-- EmailJS ライブラリ -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <script>
+
+  // ============================================
+  // EmailJS 設定
+  // ============================================
+  
+  
+
+  // EmailJS を初期化（Public Key を入力）
+  emailjs.init('E5TqacjlZCCDGNye6');
+
+    // フォーム送信イベント
+  const contactForm = document.getElementById('contactForm');
+  const statusMessage = document.getElementById('statusMessage');
+  const submitBtn = document.getElementById('submitBtn');
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault(); // デフォルトの送信動作を止める
+    
+    // ボタンを無効化（連続送信防止）
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送信中...';
+    
+    // ステータスメッセージをリセット
+    statusMessage.classList.add('hidden');
+    
+    try {
+      // EmailJS でメール送信
+      const result = await emailjs.sendForm(
+        'service_iicif6n',      // Service ID
+        'template_lrgvlrk',   // Template ID（あなたの Template ID に置き換え）
+        contactForm
+      );
+      
+      // 成功メッセージ表示
+      statusMessage.classList.remove('hidden');
+      statusMessage.className = 'p-4 rounded-lg text-center font-semibold bg-green-100 text-green-700';
+      statusMessage.textContent = '✅ メールを送信しました！ありがとうございます。';
+      
+      // フォームをリセット
+      contactForm.reset();
+      
+      // 3秒後にメッセージを消す
+      setTimeout(() => {
+        statusMessage.classList.add('hidden');
+      }, 3000);
+      
+    } catch (error) {
+      // エラーメッセージ表示
+      statusMessage.classList.remove('hidden');
+      statusMessage.className = 'p-4 rounded-lg text-center font-semibold bg-red-100 text-red-700';
+      statusMessage.textContent = '❌ メール送信に失敗しました。もう一度お試しください。';
+      
+      console.error('EmailJS Error:', error);
+    } finally {
+      // ボタンを元に戻す
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'SEND';
+    }
+  });
+
+
     // ハンバーガーメニューの機能
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -238,6 +307,8 @@
       });
     });
   </script>
+
+
 
   <script type="module" src="/main.js"></script>
 </body>
