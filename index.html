@@ -1,19 +1,31 @@
 <!DOCTYPE html>
-<html lang="ja" class="">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Portfolio</title>
+  <title>YU KIYOTA | Web Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     @import "tailwindcss";
-    @custom-variant dark (&:is(.dark *));
+
+    @theme {
+      --color-primary: #4a7c59;
+      --color-primary-dark: #3d6148;
+      --color-warm: #f0ece4;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
 
     .fade-in-hidden {
       opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
     .fade-in-visible {
@@ -21,195 +33,202 @@
       transform: translateY(0);
     }
 
-    /* ハンバーガーメニュー用のアニメーション */
+    .skill-bar-fill {
+      width: 0%;
+      transition: width 1.2s ease;
+    }
+
     .menu-open {
       display: block !important;
     }
   </style>
 </head>
 
-<body>
+<body class="bg-white text-gray-900" style="font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;">
   <div id="app">
+
     <!-- ヘッダー -->
-    <header class="fixed top-0 w-full bg-white dark:bg-gray-900 shadow-sm z-50">
-      <nav class="container mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
-          <!-- ロゴ -->
-          <div class="flex items-center space-x-2">
-            <div class="flex space-x-1">
-              <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-              <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-              <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-            </div>
-            <span class="text-xl font-bold text-gray-800 dark:text-white">Your Portfolio</span>
-          </div>
-
-          <!-- 右側グループ（ナビ＋ボタン） -->
-          <div class="flex items-center space-x-8">
-            <!-- PC用ナビゲーション -->
-            <ul class="hidden md:flex space-x-8">
-              <li><a href="#about"
-                  class="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-200">About</a></li>
-              <li><a href="#works"
-                  class="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-200">Works</a></li>
-              <li><a href="#skills"
-                  class="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-200">Skills</a></li>
-              <li><a href="#contact"
-                  class="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-200">Contact</a></li>
-            </ul>
-
-            <!-- ダークモードトグルボタン -->
-            <button id="darkToggle"
-              class="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-all duration-200 text-xl">
-              🌙
-            </button>
-
-            <!-- モバイル用メニューボタン -->
-            <button id="hamburger" class="md:hidden text-gray-600 dark:text-gray-300 focus:outline-none">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            </button>
+    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-50">
+      <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <!-- ロゴ -->
+        <div class="flex items-center gap-3">
+          <span class="font-display text-2xl font-bold text-gray-900">YK</span>
+          <div class="w-px h-5 bg-gray-300"></div>
+          <div>
+            <p class="text-sm font-semibold text-gray-900 leading-tight">YU KIYOTA</p>
+            <p class="text-xs text-gray-500 leading-tight">Web Developer</p>
           </div>
         </div>
 
-        <!-- モバイル用メニュー -->
-        <ul id="mobile-menu" class="hidden md:hidden flex flex-col space-y-4 mt-4 pb-4">
-          <li><a href="#about" class="text-gray-600 hover:text-blue-600 transition-all duration-200 block">About</a>
-          </li>
-          <li><a href="#works" class="text-gray-600 hover:text-blue-600 transition-all duration-200 block">Works</a>
-          </li>
-          <li><a href="#skills" class="text-gray-600 hover:text-blue-600 transition-all duration-200 block">Skills</a>
-          </li>
-          <li><a href="#contact" class="text-gray-600 hover:text-blue-600 transition-all duration-200 block">Contact</a>
+        <!-- PC ナビ -->
+        <ul class="hidden md:flex items-center gap-8">
+          <li><a href="#about" class="text-sm text-gray-600 hover:text-primary transition-colors">About</a></li>
+          <li><a href="#skills" class="text-sm text-gray-600 hover:text-primary transition-colors">スキル</a></li>
+          <li><a href="#works" class="text-sm text-gray-600 hover:text-primary transition-colors">制作案件</a></li>
+          <li><a href="#price" class="text-sm text-gray-600 hover:text-primary transition-colors">料金</a></li>
+          <li>
+            <a href="#contact"
+              class="text-sm bg-primary text-white px-5 py-2 rounded-sm hover:bg-primary-dark transition-colors">
+              お問い合わせ
+            </a>
           </li>
         </ul>
+
+        <!-- ハンバーガー -->
+        <button id="hamburger" class="md:hidden text-gray-600 p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
       </nav>
+
+      <!-- モバイルメニュー -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white px-6 py-4">
+        <ul class="space-y-4">
+          <li><a href="#about" class="text-sm text-gray-700 block">About</a></li>
+          <li><a href="#skills" class="text-sm text-gray-700 block">スキル</a></li>
+          <li><a href="#works" class="text-sm text-gray-700 block">制作案件</a></li>
+          <li><a href="#price" class="text-sm text-gray-700 block">料金</a></li>
+          <li><a href="#contact" class="text-sm text-gray-700 block">お問い合わせ</a></li>
+        </ul>
+      </div>
     </header>
 
-    <!-- ヒーローセクション -->
-    <section
-      class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 pt-20">
-      <div class="text-center text-white px-6">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-          Welcome to My Portfolio
-        </h1>
-        <p class="text-xl md:text-2xl mb-8 text-gray-100">
-          Full Stack Web Developer
+    <!-- Hero -->
+    <section class="min-h-screen relative overflow-hidden pt-20">
+      <!-- 背景画像 -->
+      <div class="absolute inset-0">
+        <img src="/images/hero-bg.png" alt="" class="w-full h-full object-cover object-right">
+        <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(240,236,228,1) 40%, rgba(240,236,228,0.3) 100%);"></div>
+      </div>
+      <div class="relative max-w-6xl mx-auto px-6 min-h-screen flex items-center">
+        <div class="flex items-center gap-8">
+          <!-- 縦線アクセント -->
+          <div class="hidden md:block w-px h-64 bg-gray-400 self-center shrink-0"></div>
+          <!-- テキストコンテンツ -->
+          <div class="max-w-xl py-16">
+            <h1 class="font-display text-7xl md:text-8xl font-bold leading-none text-gray-900 mb-6">
+              YU<br>KIYOTA
+            </h1>
+            <p class="text-lg text-gray-700 mb-4">Webで、想いをカタチに。</p>
+            <p class="text-sm text-gray-500 mb-10 leading-relaxed">
+              フロントエンドを中心に、デザインからコーディングまで一貫して対応。<br>
+              クライアントの想いや目標に寄り添いながら制作しています。
+            </p>
+            <a href="#contact"
+              class="inline-flex items-center gap-2 bg-primary text-white text-sm px-8 py-3 rounded-sm hover:bg-primary-dark transition-colors">
+              お問い合わせはこちら
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+          <!-- テキスト -->
+          <div class="fade-in-hidden">
+            <p class="text-xs text-gray-400 tracking-wider mb-2">私について</p>
+            <h2 class="font-display text-5xl font-bold text-gray-900 mb-8">About</h2>
+            <p class="text-sm text-gray-600 leading-relaxed mb-3">はじめまして、YU KIYOTAです。</p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-3">
+              Web制作を独学で学び、フロントエンド開発を中心に活動しています。
+            </p>
+            <p class="text-sm text-gray-600 leading-relaxed mb-10">
+              クライアントの目標に寄り添い、使いやすく・伝わるWebサイトの制作を心がけています。
+            </p>
+            <a href="#works"
+              class="inline-flex items-center gap-2 border border-gray-800 text-gray-800 text-sm px-6 py-3 hover:bg-gray-900 hover:text-white transition-colors">
+              制作実績を見る
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+          <!-- 写真エリア -->
+          <div class="fade-in-hidden">
+            <div class="aspect-[4/5] bg-gray-100 rounded-sm overflow-hidden">
+              <img src="/images/about-photo.png" alt="YU KIYOTA" class="w-full h-full object-cover object-top">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-24" style="background-color: #f9f8f5;">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-10 fade-in-hidden">
+          <p class="text-xs text-gray-400 tracking-wider mb-2">スキル</p>
+          <h2 class="font-display text-5xl font-bold text-gray-900">Skills</h2>
+        </div>
+        <p class="text-sm text-gray-500 mb-10 fade-in-hidden">
+          フロントエンドを中心に、Webに必要なスキルを幅広く持っています。
         </p>
-        <p class="text-lg mb-12 text-gray-200 max-w-2xl mx-auto">
-          React / Node.js / MongoDB を使って、美しく機能的なWebサイトを作ります
-        </p>
-        <button
-          class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-lg">
-          View My Work ↓
-        </button>
-      </div>
-    </section>
 
-    <!-- About セクション -->
-    <section id="about" class="py-20 px-6 bg-white dark:bg-gray-900">
-      <div class="container mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">About me</h2>
-        <div class="max-w-2xl mx-auto text-center">
-          <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
-            Web開発初心者から、3ヶ月で実案件レベルのスキルを習得中です。
-          </p>
-          <p class="text-lg text-gray-600 dark:text-gray-300">
-            React・Node.js・MongoDBを使ったフルスタック開発に取り組んでいます。
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Works セクション（既存） -->
-    <section id="works" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
-      <div class="container mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">Works</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-
-          <!-- プロジェクト 1 -->
-          <div
-            class="fade-in-hidden bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600"></div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Portfolio Website</h3>
-              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">HTML + Tailwind CSS + JavaScript + Vercel</p>
-              <p class="text-gray-600 dark:text-gray-300 mb-4">このポートフォリオサイト自体。レスポンシブ・ダークモード対応。</p>
-              <div class="flex gap-3">
-                <a href="https://portfolio-2026-gilt-two.vercel.app/" target="_blank" rel="noreferrer"
-                  class="text-sm px-4 py-1.5 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors no-underline">
-                  Demo
-                </a>
-                <a href="https://github.com/tunetune2424/portfolio-2026" target="_blank" rel="noreferrer"
-                  class="text-sm px-4 py-1.5 border border-gray-400 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors no-underline">
-                  GitHub
-                </a>
+        <div class="grid md:grid-cols-2 gap-x-24 gap-y-7">
+          <!-- 左列 -->
+          <div class="space-y-7">
+            <div class="fade-in-hidden">
+              <div class="flex justify-between mb-2">
+                <span class="text-sm font-medium text-gray-700">HTML / CSS</span>
+                <span class="text-xs text-gray-400">95%</span>
+              </div>
+              <div class="h-1.5 bg-gray-200 rounded-full">
+                <div class="skill-bar-fill h-full bg-primary rounded-full" data-width="95%"></div>
+              </div>
+            </div>
+            <div class="fade-in-hidden">
+              <div class="flex justify-between mb-2">
+                <span class="text-sm font-medium text-gray-700">JavaScript / TypeScript</span>
+                <span class="text-xs text-gray-400">85%</span>
+              </div>
+              <div class="h-1.5 bg-gray-200 rounded-full">
+                <div class="skill-bar-fill h-full bg-primary rounded-full" data-width="85%"></div>
+              </div>
+            </div>
+            <div class="fade-in-hidden">
+              <div class="flex justify-between mb-2">
+                <span class="text-sm font-medium text-gray-700">React / Next.js</span>
+                <span class="text-xs text-gray-400">80%</span>
+              </div>
+              <div class="h-1.5 bg-gray-200 rounded-full">
+                <div class="skill-bar-fill h-full bg-primary rounded-full" data-width="80%"></div>
               </div>
             </div>
           </div>
-
-          <!-- プロジェクト 2 -->
-          <div
-            class="fade-in-hidden bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <div class="h-48 bg-gradient-to-br from-green-400 to-green-600"></div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">Mikan Farm Website</h3>
-              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">React + Vite + CSS + EmailJS + Vercel</p>
-              <p class="text-gray-600 dark:text-gray-300 mb-4">沖縄のみかん農家のブランドサイト。EmailJSでお問い合わせフォーム実装。</p>
-              <div class="flex gap-3">
-                <a href="https://mikan-farm.vercel.app/" target="_blank" rel="noreferrer"
-                  class="text-sm px-4 py-1.5 bg-green-500 text-white rounded hover:bg-green-600 transition-colors no-underline">
-                  Demo
-                </a>
-                <a href="https://github.com/tunetune2424/mikan-farm" target="_blank" rel="noreferrer"
-                  class="text-sm px-4 py-1.5 border border-gray-400 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors no-underline">
-                  GitHub
-                </a>
+          <!-- 右列 -->
+          <div class="space-y-7">
+            <div class="fade-in-hidden">
+              <div class="flex justify-between mb-2">
+                <span class="text-sm font-medium text-gray-700">UI/UX Design (Figma)</span>
+                <span class="text-xs text-gray-400">75%</span>
+              </div>
+              <div class="h-1.5 bg-gray-200 rounded-full">
+                <div class="skill-bar-fill h-full bg-primary rounded-full" data-width="75%"></div>
               </div>
             </div>
-          </div>
-
-          <!-- プロジェクト 3 -->
-          <div
-            class="fade-in-hidden bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <div class="h-48 bg-gradient-to-br from-yellow-700 to-amber-600 flex items-center justify-center">
-              <span class="text-white text-sm tracking-widest opacity-80">ENGAWA KISSA MUSUBI-AN</span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">縁側喫茶 むすび庵</h3>
-              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">React + Express + MongoDB + Vercel + Railway</p>
-              <p class="text-gray-600 dark:text-gray-300 mb-4">架空の古民家カフェHP。JWT認証・お知らせ管理機能を実装。</p>
-              <div class="flex gap-3">
-                <a href="https://cafe-website-three-theta.vercel.app" target="_blank" rel="noreferrer"
-                  class="text-sm px-4 py-1.5 bg-amber-700 text-white rounded hover:bg-amber-800 transition-colors no-underline">
-                  Demo
-                </a>
-                <a href="https://github.com/tunetune2424/cafe-website" target="_blank" rel="noreferrer"
-                  class="text-sm px-4 py-1.5 border border-gray-400 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors no-underline">
-                  GitHub
-                </a>
+            <div class="fade-in-hidden">
+              <div class="flex justify-between mb-2">
+                <span class="text-sm font-medium text-gray-700">Node.js / Express</span>
+                <span class="text-xs text-gray-400">70%</span>
+              </div>
+              <div class="h-1.5 bg-gray-200 rounded-full">
+                <div class="skill-bar-fill h-full bg-primary rounded-full" data-width="70%"></div>
               </div>
             </div>
-          </div>
-
-          <!-- プロジェクト 4 -->
-          <div
-            class="fade-in-hidden bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <div class="h-48 bg-gradient-to-br from-stone-400 to-stone-600"></div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-2">tidagrain.</h3>
-              <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">Next.js + Supabase + Stripe</p>
-              <p class="text-gray-600 dark:text-gray-300 mb-6">フィルム写真を販売するECサイト。ギャラリー・ショップ・管理画面を実装。</p>
-              <div class="flex gap-3">
-                <a href="https://tidagrain.vercel.app/" target="_blank" rel="noreferrer"
-                  class="flex-1 text-center bg-gray-800 dark:bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700 transition-colors text-sm">
-                  サイトを見る
-                </a>
-                <a href="https://github.com/tunetune2424/tidagrain" target="_blank" rel="noreferrer"
-                  class="flex-1 text-center border border-gray-300 dark:border-gray-500 text-gray-700 dark:text-gray-300 py-2 px-4 rounded hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors text-sm">
-                  GitHub
-                </a>
+            <div class="fade-in-hidden">
+              <div class="flex justify-between mb-2">
+                <span class="text-sm font-medium text-gray-700">MongoDB / Supabase</span>
+                <span class="text-xs text-gray-400">65%</span>
+              </div>
+              <div class="h-1.5 bg-gray-200 rounded-full">
+                <div class="skill-bar-fill h-full bg-primary rounded-full" data-width="65%"></div>
               </div>
             </div>
           </div>
@@ -217,196 +236,412 @@
       </div>
     </section>
 
-    <!-- Skills セクション -->
-    <section id="skills" class="py-20 px-6 bg-white dark:bg-gray-900">
-      <div class="container mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">Skills</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+    <!-- Works -->
+    <section id="works" class="py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-end justify-between mb-12">
+          <div class="fade-in-hidden">
+            <p class="text-xs text-gray-400 tracking-wider mb-2">制作案件</p>
+            <h2 class="font-display text-5xl font-bold text-gray-900">Works</h2>
+          </div>
+        </div>
 
-          <!-- Frontend -->
-          <div class="fade-in-hidden bg-gray-50 dark:bg-gray-700 p-8 rounded-lg shadow-md">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Frontend</h3>
-            <ul class="space-y-3 text-gray-600 dark:text-gray-300">
-              <li>✓ HTML / CSS</li>
-              <li>✓ JavaScript</li>
-              <li>✓ React</li>
-              <li>✓ Next.js</li>
-              <li>✓ Tailwind CSS</li>
-              <li>✓ Responsive Design</li>
-            </ul>
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <!-- 01 Mikan Farm -->
+          <div class="fade-in-hidden bg-gray-50 p-6 rounded-sm">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-start gap-4">
+                <span class="text-xs text-gray-400 font-medium mt-0.5 shrink-0">01</span>
+                <div>
+                  <p class="text-xs text-gray-400 mb-1">農家ブランドサイト</p>
+                  <h3 class="text-base font-semibold text-gray-900">Mikan Farm Website</h3>
+                </div>
+              </div>
+              <span class="text-[10px] bg-primary/10 text-primary px-2 py-1 rounded-sm font-medium shrink-0">PLAN 02</span>
+            </div>
+            <div class="h-36 bg-gradient-to-br from-orange-100 to-orange-200 rounded-sm mb-4"></div>
+            <p class="text-xs text-gray-500 mb-4">沖縄のみかん農家のブランドサイト。EmailJSでお問い合わせフォーム実装。</p>
+            <div class="flex gap-2 flex-wrap mb-4">
+              <span class="text-xs bg-white border border-gray-200 px-2 py-1 rounded-sm text-gray-600">React</span>
+              <span class="text-xs bg-white border border-gray-200 px-2 py-1 rounded-sm text-gray-600">Vite</span>
+              <span class="text-xs bg-white border border-gray-200 px-2 py-1 rounded-sm text-gray-600">EmailJS</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="https://mikan-farm.vercel.app/" target="_blank" rel="noreferrer"
+                class="text-xs px-4 py-1.5 bg-primary text-white rounded-sm hover:bg-primary-dark transition-colors">Demo</a>
+              <a href="https://github.com/tunetune2424/mikan-farm" target="_blank" rel="noreferrer"
+                class="text-xs px-4 py-1.5 border border-gray-300 text-gray-600 rounded-sm hover:bg-gray-100 transition-colors">GitHub</a>
+            </div>
           </div>
 
-          <!-- Backend -->
-          <div class="fade-in-hidden bg-gray-50 dark:bg-gray-700 p-8 rounded-lg shadow-md">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Backend</h3>
-            <ul class="space-y-3 text-gray-600 dark:text-gray-300">
-              <li>✓ Node.js</li>
-              <li>✓ Express</li>
-              <li>✓ REST API</li>
-              <li>✓ Authentication</li>
-              <li>✓ Server Deployment</li>
-            </ul>
+          <!-- 02 縁側喫茶 -->
+          <div class="fade-in-hidden bg-gray-50 p-6 rounded-sm">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-start gap-4">
+                <span class="text-xs text-gray-400 font-medium mt-0.5 shrink-0">02</span>
+                <div>
+                  <p class="text-xs text-gray-400 mb-1">カフェホームページ</p>
+                  <h3 class="text-base font-semibold text-gray-900">縁側喫茶 むすび庵</h3>
+                </div>
+              </div>
+              <span class="text-[10px] bg-primary text-white px-2 py-1 rounded-sm font-medium shrink-0">PLAN 03</span>
+            </div>
+            <div class="h-36 bg-gradient-to-br from-amber-100 to-amber-200 rounded-sm mb-4"></div>
+            <p class="text-xs text-gray-500 mb-4">架空の古民家カフェHP。JWT認証・お知らせ管理機能を実装。</p>
+            <div class="flex gap-2 flex-wrap mb-4">
+              <span class="text-xs bg-white border border-gray-200 px-2 py-1 rounded-sm text-gray-600">React</span>
+              <span class="text-xs bg-white border border-gray-200 px-2 py-1 rounded-sm text-gray-600">Express</span>
+              <span class="text-xs bg-white border border-gray-200 px-2 py-1 rounded-sm text-gray-600">MongoDB</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="https://cafe-website-three-theta.vercel.app" target="_blank" rel="noreferrer"
+                class="text-xs px-4 py-1.5 bg-primary text-white rounded-sm hover:bg-primary-dark transition-colors">Demo</a>
+              <a href="https://github.com/tunetune2424/cafe-website" target="_blank" rel="noreferrer"
+                class="text-xs px-4 py-1.5 border border-gray-300 text-gray-600 rounded-sm hover:bg-gray-100 transition-colors">GitHub</a>
+            </div>
           </div>
 
-          <!-- Database & Tools -->
-          <div class="fade-in-hidden bg-gray-50 dark:bg-gray-700 p-8 rounded-lg shadow-md">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Database & Tools</h3>
-            <ul class="space-y-3 text-gray-600 dark:text-gray-300">
-              <li>✓ MongoDB</li>
-              <li>✓ Supabase (PostgreSQL)</li>
-              <li>✓ Git / GitHub</li>
-              <li>✓ Vercel & Render</li>
-              <li>✓ Postman</li>
-              <li>✓ npm & Packages</li>
-            </ul>
+          <!-- 03 tidagrain -->
+          <div class="fade-in-hidden bg-gray-50 p-6 rounded-sm">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-start gap-4">
+                <span class="text-xs text-gray-400 font-medium mt-0.5 shrink-0">03</span>
+                <div>
+                  <p class="text-xs text-gray-400 mb-1">フィルム写真ECサイト</p>
+                  <h3 class="text-base font-semibold text-gray-900">tidagrain.</h3>
+                </div>
+              </div>
+              <span class="text-[10px] bg-primary text-white px-2 py-1 rounded-sm font-medium shrink-0">PLAN 03</span>
+            </div>
+            <div class="h-36 bg-gradient-to-br from-stone-200 to-stone-300 rounded-sm mb-4"></div>
+            <p class="text-xs text-gray-500 mb-4">フィルム写真を販売するECサイト。ギャラリー・ショップ・管理画面を実装。</p>
+            <div class="flex gap-2 flex-wrap mb-4">
+              <span class="text-xs bg-white border border-gray-200 px-2 py-1 rounded-sm text-gray-600">Next.js</span>
+              <span class="text-xs bg-white border border-gray-200 px-2 py-1 rounded-sm text-gray-600">Supabase</span>
+              <span class="text-xs bg-white border border-gray-200 px-2 py-1 rounded-sm text-gray-600">Stripe</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="https://tidagrain.vercel.app/" target="_blank" rel="noreferrer"
+                class="text-xs px-4 py-1.5 bg-primary text-white rounded-sm hover:bg-primary-dark transition-colors">サイトを見る</a>
+              <a href="https://github.com/tunetune2424/tidagrain" target="_blank" rel="noreferrer"
+                class="text-xs px-4 py-1.5 border border-gray-300 text-gray-600 rounded-sm hover:bg-gray-100 transition-colors">GitHub</a>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- Contact セクション -->
-    <section id="contact" class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
-      <div class="container mx-auto">
-        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">Contact me</h2>
-        <div class="max-w-2xl mx-auto">
-          <p class="text-center text-gray-600 dark:text-gray-300 mb-8">
-            お仕事のご相談やお問い合わせは、下記フォームからお気軽にどうぞ。
-          </p>
-          <form id="contactForm" class="fade-in-hidden space-y-6">
-            <div>
-              <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Name</label>
-              <input type="text" id="name" name="name"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-                placeholder="Your Name" required>
-            </div>
-            <div>
-              <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Email</label>
-              <input type="email" id="email" name="email"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-                placeholder="Your Email" required>
-            </div>
-            <div>
-              <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Message</label>
-              <textarea id="message" name="message"
-                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-white h-32"
-                placeholder="Your Message" required></textarea>
-            </div>
-            <!-- メッセージ表示エリア（送信結果） -->
-            <div id="statusMessage" class="hidden p-4 rounded-lg text-center font-semibold"></div>
+    <!-- Flow -->
+    <section id="flow" class="py-24" style="background-color: #f9f8f5;">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-12 fade-in-hidden">
+          <p class="text-xs text-gray-400 tracking-wider mb-2">制作の流れ</p>
+          <h2 class="font-display text-5xl font-bold text-gray-900">Flow</h2>
+        </div>
 
-            <button type="submit" id="submitBtn"
-              class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-all duration-200">
-              SEND
-            </button>
-          </form>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-4 relative">
+
+          <!-- Step 1 -->
+          <div class="fade-in-hidden flex flex-col items-center text-center">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background-color: #e8f0eb;">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <h3 class="text-sm font-semibold text-gray-800 mb-1">ヒアリング</h3>
+            <span class="text-xs text-primary font-medium mb-2">〜1日</span>
+            <p class="text-xs text-gray-500 leading-relaxed">ご要望を丁寧にお伺いし、<br>目的を整理します</p>
+          </div>
+
+          <!-- 矢印 -->
+          <div class="hidden md:flex items-center justify-center mt-[-2rem]">
+            <div class="w-full h-px bg-gray-300"></div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="fade-in-hidden flex flex-col items-center text-center">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background-color: #e8f0eb;">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-sm font-semibold text-gray-800 mb-1">ご案内・お見積り</h3>
+            <span class="text-xs text-primary font-medium mb-2">2〜3日</span>
+            <p class="text-xs text-gray-500 leading-relaxed">内容を確認し、最適なプランと<br>お見積りをご提案します</p>
+          </div>
+
+          <!-- 矢印 -->
+          <div class="hidden md:flex items-center justify-center mt-[-2rem]">
+            <div class="w-full h-px bg-gray-300"></div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="fade-in-hidden flex flex-col items-center text-center">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background-color: #e8f0eb;">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-sm font-semibold text-gray-800 mb-1">デザイン・制作</h3>
+            <span class="text-xs text-primary font-medium mb-2">1〜3週間</span>
+            <p class="text-xs text-gray-500 leading-relaxed">デザインからコーディングまで<br>一貫して対応します</p>
+          </div>
+
+          <!-- 矢印 -->
+          <div class="hidden md:flex items-center justify-center mt-[-2rem]">
+            <div class="w-full h-px bg-gray-300"></div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="fade-in-hidden flex flex-col items-center text-center">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background-color: #e8f0eb;">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              </svg>
+            </div>
+            <h3 class="text-sm font-semibold text-gray-800 mb-1">確認・修正</h3>
+            <span class="text-xs text-primary font-medium mb-2">3〜5日</span>
+            <p class="text-xs text-gray-500 leading-relaxed">ご確認いただき、納得いくまで<br>修正を進めます</p>
+          </div>
+
+          <!-- 矢印 -->
+          <div class="hidden md:flex items-center justify-center mt-[-2rem]">
+            <div class="w-full h-px bg-gray-300"></div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="fade-in-hidden flex flex-col items-center text-center">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background-color: #e8f0eb;">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+            </div>
+            <h3 class="text-sm font-semibold text-gray-800 mb-1">公開・運用サポート</h3>
+            <span class="text-xs text-primary font-medium mb-2">公開後〜</span>
+            <p class="text-xs text-gray-500 leading-relaxed">公開後も安心して運用できるよう<br>サポートします</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Price -->
+    <section id="price" class="py-24 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mb-12 fade-in-hidden">
+          <p class="text-xs text-gray-400 tracking-wider mb-2">料金の目安</p>
+          <h2 class="font-display text-5xl font-bold text-gray-900">Price</h2>
+        </div>
+        <div class="mb-10 fade-in-hidden space-y-2">
+          <p class="text-xs text-gray-500">※ 金額はあくまで目安です。やりたいことや組み込みたい機能によって、ご相談の上で調整できます。</p>
+          <p class="text-xs text-gray-500">※ まずシンプルなプランで始めて、後から機能追加・プランアップグレードも対応可能です。</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- Plan 1 -->
+          <div class="fade-in-hidden border border-gray-200 rounded-sm p-8 flex flex-col">
+            <p class="text-xs text-gray-400 tracking-wider mb-3">PLAN 01</p>
+            <h3 class="text-lg font-semibold text-gray-900 mb-1">シンプルLP</h3>
+            <p class="text-xs text-gray-500 mb-6">個人・小規模店舗向け</p>
+            <div class="mb-1">
+              <span class="text-3xl font-bold text-gray-900">¥50,000</span>
+              <span class="text-base font-normal text-gray-500">〜</span>
+            </div>
+            <p class="text-xs text-gray-400 mb-1">+ 保守費 <span class="font-medium text-gray-600">¥3,000/月〜</span></p>
+            <p class="text-xs text-primary font-medium mb-8">納期：2〜3週間</p>
+            <ul class="space-y-2 text-xs text-gray-600 mb-8 flex-1">
+              <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>1〜3ページ構成</li>
+              <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Figmaデザイン・レスポンシブ対応</li>
+              <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>お問い合わせフォーム</li>
+              <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>Vercelデプロイ</li>
+            </ul>
+            <a href="/price.html" class="text-center border border-gray-800 text-gray-800 text-xs py-2.5 rounded-sm hover:bg-gray-900 hover:text-white transition-colors">
+              詳しく見る →
+            </a>
+          </div>
+
+          <!-- Plan 2（推奨） -->
+          <div class="fade-in-hidden rounded-sm p-8 text-white relative flex flex-col" style="background-color: #4a7c59;">
+            <span class="absolute top-4 right-4 text-xs bg-white text-primary font-medium px-2 py-0.5 rounded-sm">人気</span>
+            <p class="text-xs text-white/60 tracking-wider mb-3">PLAN 02</p>
+            <h3 class="text-lg font-semibold mb-1">スタンダードサイト</h3>
+            <p class="text-xs text-white/60 mb-6">飲食店・サロン・企業向け</p>
+            <div class="mb-1">
+              <span class="text-3xl font-bold">¥100,000</span>
+              <span class="text-base font-normal text-white/60">〜</span>
+            </div>
+            <p class="text-xs text-white/60 mb-1">+ 保守費 <span class="font-medium text-white/80">¥5,000/月〜</span></p>
+            <p class="text-xs text-white/80 font-medium mb-8">納期：3〜5週間</p>
+            <ul class="space-y-2 text-xs text-white/90 mb-8 flex-1">
+              <li class="flex gap-2"><span class="text-white shrink-0">✓</span>5〜8ページ構成</li>
+              <li class="flex gap-2"><span class="text-white shrink-0">✓</span>デザイン・コーディング一式</li>
+              <li class="flex gap-2"><span class="text-primary-dark shrink-0">✓</span>SEO基本設定・Googleマップ</li>
+              <li class="flex gap-2"><span class="text-white shrink-0">✓</span>公開後1ヶ月サポート</li>
+            </ul>
+            <a href="/price.html" class="text-center bg-white text-primary text-xs py-2.5 rounded-sm hover:bg-gray-100 transition-colors font-medium">
+              詳しく見る →
+            </a>
+          </div>
+
+          <!-- Plan 3 -->
+          <div class="fade-in-hidden border border-gray-200 rounded-sm p-8 flex flex-col">
+            <p class="text-xs text-gray-400 tracking-wider mb-3">PLAN 03</p>
+            <h3 class="text-lg font-semibold text-gray-900 mb-1">Webアプリ開発</h3>
+            <p class="text-xs text-gray-500 mb-6">機能実装・システム開発向け</p>
+            <div class="mb-1">
+              <span class="text-3xl font-bold text-gray-900">¥200,000</span>
+              <span class="text-base font-normal text-gray-500">〜</span>
+            </div>
+            <p class="text-xs text-gray-400 mb-1">+ 保守費 <span class="font-medium text-gray-600">¥10,000/月〜</span></p>
+            <p class="text-xs text-primary font-medium mb-8">納期：5〜8週間</p>
+            <ul class="space-y-2 text-xs text-gray-600 mb-8 flex-1">
+              <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>フロントエンド + バックエンド</li>
+              <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>ログイン・認証機能</li>
+              <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>管理画面・データ管理</li>
+              <li class="flex gap-2"><span class="text-primary shrink-0">✓</span>公開後2ヶ月サポート</li>
+            </ul>
+            <a href="/price.html" class="text-center border border-gray-800 text-gray-800 text-xs py-2.5 rounded-sm hover:bg-gray-900 hover:text-white transition-colors">
+              詳しく見る →
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 relative overflow-hidden" style="background-color: #f0ece4;">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16">
+          <!-- 左：テキスト -->
+          <div class="fade-in-hidden flex flex-col justify-center">
+            <p class="text-xs text-gray-400 tracking-wider mb-2">お問い合わせ</p>
+            <h2 class="font-display text-5xl font-bold text-gray-900 mb-6">Contact</h2>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              お仕事のご相談・ご依頼など、<br>お気軽にお問い合わせください。
+            </p>
+          </div>
+          <!-- 右：フォーム -->
+          <div class="fade-in-hidden">
+            <form id="contactForm" class="space-y-5">
+              <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1.5">お名前</label>
+                <input type="text" id="name" name="name"
+                  class="w-full px-4 py-3 bg-white border border-gray-200 text-sm focus:outline-none focus:border-primary transition-colors"
+                  placeholder="山田 太郎" required>
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1.5">メールアドレス</label>
+                <input type="email" id="email" name="email"
+                  class="w-full px-4 py-3 bg-white border border-gray-200 text-sm focus:outline-none focus:border-primary transition-colors"
+                  placeholder="example@email.com" required>
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1.5">お問い合わせ内容</label>
+                <textarea id="message" name="message"
+                  class="w-full px-4 py-3 bg-white border border-gray-200 text-sm focus:outline-none focus:border-primary transition-colors h-32 resize-none"
+                  placeholder="ご依頼内容をお聞かせください" required></textarea>
+              </div>
+              <div id="statusMessage" class="hidden p-4 rounded text-center text-sm font-medium"></div>
+              <button type="submit" id="submitBtn"
+                class="w-full bg-primary text-white text-sm font-medium py-3 hover:bg-primary-dark transition-colors">
+                送信する
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 px-6">
-      <div class="container mx-auto text-center">
-        <p class="text-gray-400">© 2024 Your Portfolio. All rights reserved.</p>
+    <footer style="background-color: #1e2a1e;" class="text-white py-12 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row items-start justify-between mb-8 gap-6">
+          <!-- ロゴ -->
+          <div class="flex items-center gap-3">
+            <span class="font-display text-2xl font-bold">YK</span>
+            <div class="w-px h-5 bg-white/30"></div>
+            <div>
+              <p class="text-sm font-semibold">YU KIYOTA</p>
+              <p class="text-xs text-white/50">Web Developer</p>
+            </div>
+          </div>
+          <!-- ナビ -->
+          <ul class="flex flex-wrap gap-6">
+            <li><a href="#about" class="text-sm text-white/70 hover:text-white transition-colors">About</a></li>
+            <li><a href="#skills" class="text-sm text-white/70 hover:text-white transition-colors">スキル</a></li>
+            <li><a href="#works" class="text-sm text-white/70 hover:text-white transition-colors">制作案件</a></li>
+            <li><a href="#contact" class="text-sm text-white/70 hover:text-white transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+        <div class="border-t border-white/10 pt-6">
+          <p class="text-xs text-white/40">© 2025 YU KIYOTA. All rights reserved.</p>
+        </div>
       </div>
     </footer>
 
   </div>
 
-
-
   <!-- EmailJS ライブラリ -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <script>
-
-    // ============================================
-    // EmailJS 設定
-    // ============================================
-
-
-
-    // EmailJS を初期化（Public Key を入力）
+    // EmailJS 初期化
     emailjs.init('E5TqacjlZCCDGNye6');
 
-    // フォーム送信イベント
+    // フォーム送信
     const contactForm = document.getElementById('contactForm');
     const statusMessage = document.getElementById('statusMessage');
     const submitBtn = document.getElementById('submitBtn');
 
     contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault(); // デフォルトの送信動作を止める
-
-      // ボタンを無効化（連続送信防止）
+      e.preventDefault();
       submitBtn.disabled = true;
       submitBtn.textContent = '送信中...';
-
-      // ステータスメッセージをリセット
       statusMessage.classList.add('hidden');
 
       try {
-        // EmailJS でメール送信
-        const result = await emailjs.sendForm(
-          'service_iicif6n',      // Service ID
-          'template_lrgvlrk',   // Template ID（あなたの Template ID に置き換え）
-          contactForm
-        );
-
-        // 成功メッセージ表示
+        await emailjs.sendForm('service_iicif6n', 'template_lrgvlrk', contactForm);
         statusMessage.classList.remove('hidden');
-        statusMessage.className = 'p-4 rounded-lg text-center font-semibold bg-green-100 text-green-700';
+        statusMessage.className = 'p-4 rounded text-center text-sm font-medium bg-green-50 text-green-700';
         statusMessage.textContent = '✅ メールを送信しました！ありがとうございます。';
-
-        // フォームをリセット
         contactForm.reset();
-
-        // 3秒後にメッセージを消す
-        setTimeout(() => {
-          statusMessage.classList.add('hidden');
-        }, 3000);
-
+        setTimeout(() => statusMessage.classList.add('hidden'), 3000);
       } catch (error) {
-        // エラーメッセージ表示
         statusMessage.classList.remove('hidden');
-        statusMessage.className = 'p-4 rounded-lg text-center font-semibold bg-red-100 text-red-700';
-        statusMessage.textContent = '❌ メール送信に失敗しました。もう一度お試しください。';
-
+        statusMessage.className = 'p-4 rounded text-center text-sm font-medium bg-red-50 text-red-700';
+        statusMessage.textContent = '❌ 送信に失敗しました。もう一度お試しください。';
         console.error('EmailJS Error:', error);
       } finally {
-        // ボタンを元に戻す
         submitBtn.disabled = false;
-        submitBtn.textContent = 'SEND';
+        submitBtn.textContent = '送信する';
       }
     });
 
-    // ダークモードトグル
-    const darkToggle = document.getElementById('darkToggle');
-    const html = document.documentElement;
-
-    if (localStorage.getItem('darkMode') === 'true') {
-      html.classList.add('dark');
-      darkToggle.textContent = '☀️';
-    }
-
-    darkToggle.addEventListener('click', () => {
-      html.classList.toggle('dark');
-      const isDark = html.classList.contains('dark');
-      darkToggle.textContent = isDark ? '☀️' : '🌙';
-      localStorage.setItem('darkMode', isDark);
-    });
-
-    // スクロールアニメーション
+    // スクロールアニメーション + スキルバー
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('fade-in-visible');
+          entry.target.querySelectorAll('[data-width]').forEach(bar => {
+            bar.style.width = bar.dataset.width;
+          });
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.15 });
 
     document.querySelectorAll('.fade-in-hidden').forEach(el => observer.observe(el));
 
-    // ハンバーガーメニューの機能
+    // ハンバーガーメニュー
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -414,16 +649,10 @@
       mobileMenu.classList.toggle('hidden');
     });
 
-    // モバイルメニューのリンクをクリックしたらメニューを閉じる
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-      });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
     });
   </script>
-
-
 
   <script type="module" src="/main.js"></script>
 </body>
